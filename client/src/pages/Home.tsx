@@ -621,8 +621,32 @@ Less Waiting. More Living. 💙`}
                   All strategy documents, calendars, and presentation materials in one place
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card className="bg-green-50 border-green-200 border-2">
+                    <CardHeader>
+                      <div className="flex items-center gap-3">
+                        <FileText className="h-8 w-8 text-green-600" />
+                        <div>
+                          <CardTitle className="text-lg">30-Day Authentic Content Plan</CardTitle>
+                          <CardDescription className="text-sm">Markdown document</CardDescription>
+                        </div>
+                      </div>
+                      <Badge className="mt-2 bg-green-600">NEW - Recommended</Badge>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Complete day-by-day content plan (Feb 10-March 21) with full post copies, non-salesy approach, execution checklist. Ready to use immediately.
+                      </p>
+                      <Button className="w-full bg-green-600 hover:bg-green-700" asChild>
+                        <a href="/30_Day_Authentic_Content_Plan.md" download>
+                          <Download className="mr-2 h-4 w-4" />
+                          Download 30-Day Plan
+                        </a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+
                   <Card className="bg-blue-50 border-blue-200">
                     <CardHeader>
                       <div className="flex items-center gap-3">
@@ -635,12 +659,12 @@ Less Waiting. More Living. 💙`}
                     </CardHeader>
                     <CardContent>
                       <p className="text-sm text-muted-foreground mb-4">
-                        Week-by-week posting schedule with platform, post type, copy, visuals, and paid boost recommendations
+                        Complete 90-day posting schedule with dates, platforms, themes, and metrics
                       </p>
-                      <Button className="w-full" asChild>
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
                         <a href="/STL_IOIR_Content_Calendar.xlsx" download>
                           <Download className="mr-2 h-4 w-4" />
-                          Download Excel
+                          Download Calendar
                         </a>
                       </Button>
                     </CardContent>

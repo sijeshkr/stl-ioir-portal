@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1772136535941,
+      "tag": "0000_puzzling_silver_fox",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1772137006588,
+      "tag": "0001_clammy_eddie_brock",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1772141976665,
+      "tag": "0002_ambitious_lake",
+      "breakpoints": true
+    }
+  ]
+}

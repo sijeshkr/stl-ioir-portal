@@ -13,6 +13,7 @@ import MonthlyPlans from "./pages/MonthlyPlans";
 import MonthlyPlanForm from "./pages/MonthlyPlanForm";
 import Content from "./pages/Content";
 import ContentForm from "./pages/ContentForm";
+import ContentDetail from "./pages/ContentDetail";
 
 function Router() {
   const { isAuthenticated, loading } = useAuth();
@@ -67,8 +68,16 @@ function Router() {
         {isAuthenticated ? <Content /> : <Redirect to="/login" />}
       </Route>
       
-      <Route path="/content/:id">
+      <Route path="/content/new">
         {isAuthenticated ? <ContentForm /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/content/:id/edit">
+        {isAuthenticated ? <ContentForm /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/content/:id">
+        {isAuthenticated ? <ContentDetail /> : <Redirect to="/login" />}
       </Route>
       
       <Route component={NotFound} />

@@ -151,7 +151,6 @@ export const monthlyPlans = mysqlTable("monthly_plans", {
   clientId: int("clientId").notNull(),
   name: varchar("name", { length: 255 }).notNull(), // "March 2026 Launch"
   month: varchar("month", { length: 7 }).notNull(), // "2026-03"
-  strategyId: int("strategyId").notNull(), // Primary strategy
   status: mysqlEnum("status", ["draft", "pending_approval", "approved", "locked"]).default("draft").notNull(),
   
   // High-level themes and notes from leadership meeting
@@ -162,7 +161,7 @@ export const monthlyPlans = mysqlTable("monthly_plans", {
   approvedAt: timestamp("approvedAt"),
   lockedAt: timestamp("lockedAt"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
 });
 
 export type MonthlyPlan = typeof monthlyPlans.$inferSelect;

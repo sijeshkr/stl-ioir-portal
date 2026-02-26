@@ -62,8 +62,6 @@ export const monthlyPlansRouter = router({
         clientId: z.number(),
         name: z.string(),
         month: z.string(), // YYYY-MM format
-        startDate: z.string(),
-        endDate: z.string(),
         notes: z.string().optional(),
         strategies: z.array(
           z.object({
@@ -90,8 +88,6 @@ export const monthlyPlansRouter = router({
         clientId: input.clientId,
         name: input.name,
         month: input.month,
-        startDate: new Date(input.startDate),
-        endDate: new Date(input.endDate),
         status: "draft",
         notes: input.notes || null,
         createdBy: ctx.user!.id,
@@ -132,8 +128,6 @@ export const monthlyPlansRouter = router({
       z.object({
         id: z.number(),
         name: z.string().optional(),
-        startDate: z.string().optional(),
-        endDate: z.string().optional(),
         notes: z.string().optional(),
         status: z.enum(["draft", "pending_approval", "approved", "locked"]).optional(),
         strategies: z
@@ -162,8 +156,6 @@ export const monthlyPlansRouter = router({
 
       const updateData: any = {};
       if (input.name) updateData.name = input.name;
-      if (input.startDate) updateData.startDate = new Date(input.startDate);
-      if (input.endDate) updateData.endDate = new Date(input.endDate);
       if (input.notes !== undefined) updateData.notes = input.notes;
       if (input.status) updateData.status = input.status;
 

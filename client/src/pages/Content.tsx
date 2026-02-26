@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DashboardLayout from "@/components/DashboardLayout";
 import ContentKanban from "./ContentKanban";
 import ContentCalendar from "./ContentCalendar";
 import { useLocation, Link } from "wouter";
@@ -83,7 +84,8 @@ export default function Content() {
   };
 
   return (
-    <div className="p-8 space-y-6">
+    <DashboardLayout>
+      <div className="p-8 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -271,5 +273,6 @@ export default function Content() {
         </Card>
       )}
     </div>
+    </DashboardLayout>
   );
 }

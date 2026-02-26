@@ -17,11 +17,17 @@
 - [x] Content Planning - Calendar view with month navigation
 - [x] Content Planning backend API (list, get, create, update, approve, reject, delete)
 - [x] Content form with 4-stage tabs (Topic, Plan, Copy, Creative)
+- [x] Fixed monthly plan page error (missing columns)
+- [x] Fixed missing sidebar on content planning page
+- [x] Comment system for content approval workflow
+- [x] Content detail page with comments section
+- [x] Multi-action approval (Comment, Request Changes, Reject, Approve)
+- [x] Status updates based on approval actions
 
 ## In Progress
 - [ ] Content form tab switching functionality (tabs need click handlers)
 - [ ] Content tagging with personas/services/conditions
-- [ ] Multi-level approval workflow with comments
+- [ ] Drag-and-drop functionality in Kanban view
 
 ## Pending Features
 - [ ] Comment threads for content approval

@@ -1,0 +1,17 @@
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `clientId` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `month` varchar(7) NOT NULL,
+  `strategyId` int NOT NULL,
+  `status` enum('draft', 'pending_approval', 'approved', 'locked') NOT NULL DEFAULT 'draft',
+  `notes` text,
+  `createdBy` int NOT NULL,
+  `approvedBy` int,
+  `approvedAt` timestamp,
+  `lockedAt` timestamp,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Create monthly_plan_strategies table
+CREATE TABLE IF NOT EXISTS `monthly_plan_strategies` (

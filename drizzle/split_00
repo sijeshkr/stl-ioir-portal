@@ -1,0 +1,8 @@
+-- Custom SQL migration file, put your code below! --
+
+-- Drop old content table and recreate with new schema
+DROP TABLE IF EXISTS `content_comments`;
+DROP TABLE IF EXISTS `content`;
+
+-- Create strategies table
+CREATE TABLE IF NOT EXISTS `strategies` (

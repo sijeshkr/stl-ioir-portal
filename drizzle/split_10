@@ -1,0 +1,7 @@
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `contentId` int NOT NULL,
+  `userId` int NOT NULL,
+  `comment` text NOT NULL,
+  `action` enum('comment', 'approve', 'request_changes', 'reject'),
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

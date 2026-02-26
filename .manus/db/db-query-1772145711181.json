@@ -1,0 +1,23 @@
+{
+  "query": "SELECT * FROM monthly_plans LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute SELECT * FROM monthly_plans LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "clientId": "1",
+      "name": "March 2026 Launch",
+      "month": "2026-03-01",
+      "status": "approved",
+      "notes": "Grand opening month. Focus on physician referrals and launch week visibility. Week 1: Introducing STL IOIR. Week 2: Pinhole Advantage. Week 3: Launch Week (Mar 10-14). Week 4: Patient Success Stories.",
+      "createdBy": "NULL",
+      "approvedBy": "NULL",
+      "approvedAt": "NULL",
+      "createdAt": "2026-02-26 22:31:03",
+      "updatedAt": "2026-02-26 22:31:03"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tclientId\tname\tmonth\tstatus\tnotes\tcreatedBy\tapprovedBy\tapprovedAt\tcreatedAt\tupdatedAt\n1\t1\tMarch 2026 Launch\t2026-03-01\tapproved\tGrand opening month. Focus on physician referrals and launch week visibility. Week 1: Introducing STL IOIR. Week 2: Pinhole Advantage. Week 3: Launch Week (Mar 10-14). Week 4: Patient Success Stories.\tNULL\tNULL\tNULL\t2026-02-26 22:31:03\t2026-02-26 22:31:03\n",
+  "stderr": "",
+  "execution_time_ms": 71
+}

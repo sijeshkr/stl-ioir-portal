@@ -1,0 +1,10 @@
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `strategyId` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `sortOrder` int NOT NULL DEFAULT 0,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create strategy_conditions table
+CREATE TABLE IF NOT EXISTS `strategy_conditions` (

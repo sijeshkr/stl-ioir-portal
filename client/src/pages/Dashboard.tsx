@@ -61,10 +61,17 @@ export default function Dashboard() {
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
+            const handleClick = () => {
+              if (item.id === "strategies") {
+                window.location.href = "/strategies";
+              } else {
+                setActiveSection(item.id);
+              }
+            };
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveSection(item.id)}
+                onClick={handleClick}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
                     ? "bg-primary text-primary-foreground"

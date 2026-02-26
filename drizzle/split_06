@@ -1,0 +1,9 @@
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `monthlyPlanId` int NOT NULL,
+  `strategyId` int NOT NULL,
+  `allocation` int NOT NULL DEFAULT 100,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create content_scope table
+CREATE TABLE IF NOT EXISTS `content_scope` (

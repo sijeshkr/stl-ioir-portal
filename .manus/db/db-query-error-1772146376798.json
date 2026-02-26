@@ -1,0 +1,8 @@
+{
+  "query": "ALTER TABLE content \nADD COLUMN topicTitle VARCHAR(255) AFTER status,\nADD COLUMN topicDescription TEXT AFTER topicTitle,\nADD COLUMN planTitle VARCHAR(255) AFTER topicDescription,\nADD COLUMN platform ENUM('linkedin', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'blog', 'newsletter', 'gmb') AFTER planTitle,\nADD COLUMN contentFormat VARCHAR(64) AFTER platform,\nADD COLUMN copyBody TEXT AFTER scheduledDate,\nADD COLUMN copyHashtags TEXT AFTER copyBody,\nADD COLUMN copyCta TEXT AFTER copyHashtags,\nADD COLUMN mediaUrls TEXT AFTER copyCta,\nADD COLUMN publishedAt TIMESTAMP NULL AFTER mediaUrls,\nADD COLUMN publishedUrl TEXT AFTER publishedAt;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute ALTER TABLE content \nADD COLUMN topicTitle VARCHAR(255) AFTER status,\nADD COLUMN topicDescription TEXT AFTER topicTitle,\nADD COLUMN planTitle VARCHAR(255) AFTER topicDescription,\nADD COLUMN platform ENUM('linkedin', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'blog', 'newsletter', 'gmb') AFTER planTitle,\nADD COLUMN contentFormat VARCHAR(64) AFTER platform,\nADD COLUMN copyBody TEXT AFTER scheduledDate,\nADD COLUMN copyHashtags TEXT AFTER copyBody,\nADD COLUMN copyCta TEXT AFTER copyHashtags,\nADD COLUMN mediaUrls TEXT AFTER copyCta,\nADD COLUMN publishedAt TIMESTAMP NULL AFTER mediaUrls,\nADD COLUMN publishedUrl TEXT AFTER publishedAt;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'topictitle' in 'content'"
+  ]
+}

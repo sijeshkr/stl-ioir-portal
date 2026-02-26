@@ -1,0 +1,11 @@
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `monthlyPlanId` int NOT NULL,
+  `platform` varchar(64) NOT NULL,
+  `contentType` varchar(64) NOT NULL,
+  `quantity` int NOT NULL,
+  `budget` decimal(10, 2),
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Recreate content table with new schema
+CREATE TABLE `content` (

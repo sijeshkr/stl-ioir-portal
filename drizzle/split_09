@@ -1,0 +1,10 @@
+  `id` int AUTO_INCREMENT PRIMARY KEY,
+  `contentId` int NOT NULL,
+  `tagType` enum('persona', 'service', 'condition', 'funnel_stage') NOT NULL,
+  `tagId` int NOT NULL,
+  `tagValue` varchar(255),
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Recreate content_comments table
+CREATE TABLE `content_comments` (

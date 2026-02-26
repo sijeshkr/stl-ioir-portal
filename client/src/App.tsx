@@ -7,6 +7,12 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { useAuth } from "./_core/hooks/useAuth";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Strategies from "./pages/Strategies";
+import StrategyForm from "./pages/StrategyForm";
+import MonthlyPlans from "./pages/MonthlyPlans";
+import MonthlyPlanForm from "./pages/MonthlyPlanForm";
+import Content from "./pages/Content";
+import ContentForm from "./pages/ContentForm";
 
 function Router() {
   const { isAuthenticated, loading } = useAuth();
@@ -33,7 +39,38 @@ function Router() {
         {isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}
       </Route>
       
-      <Route path="/404" component={NotFound} />
+      <Route path="/strategies">
+        {isAuthenticated ? <Strategies /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/strategies/new">
+        {isAuthenticated ? <StrategyForm /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/strategies/:id">
+        {isAuthenticated ? <StrategyForm /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/monthly-plans">
+        {isAuthenticated ? <MonthlyPlans /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/monthly-plans/new">
+        {isAuthenticated ? <MonthlyPlanForm /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/monthly-plans/:id">
+        {isAuthenticated ? <MonthlyPlanForm /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/content">
+        {isAuthenticated ? <Content /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/content/:id">
+        {isAuthenticated ? <ContentForm /> : <Redirect to="/login" />}
+      </Route>
+      
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS content_tags (\n  id int AUTO_INCREMENT PRIMARY KEY,\n  contentId int NOT NULL,\n  tagType enum('persona', 'service', 'condition', 'funnel_stage') NOT NULL,\n  tagId int NOT NULL,\n  tagValue varchar(255),\n  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute CREATE TABLE IF NOT EXISTS content_tags (\n  id int AUTO_INCREMENT PRIMARY KEY,\n  contentId int NOT NULL,\n  tagType enum('persona', 'service', 'condition', 'funnel_stage') NOT NULL,\n  tagId int NOT NULL,\n  tagValue varchar(255),\n  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 197
+}

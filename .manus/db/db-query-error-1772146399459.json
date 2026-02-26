@@ -1,0 +1,8 @@
+{
+  "query": "INSERT INTO content (clientId, monthlyPlanId, strategyId, stage, status, title, body, scheduledAt, createdBy) VALUES \n(1, 1, 1, 'topic', 'draft', 'LinkedIn Post: Dr. Vaheesan Introduction', 'Introduce Dr. Vaheesan and his 30+ years of experience', '2026-03-15 10:00:00', 1),\n(1, 1, 1, 'plan', 'pending_review', 'Facebook: No Knife Needed Campaign', 'Explain the pinhole advantage vs traditional surgery', '2026-03-18 14:00:00', 1),\n(1, 1, 1, 'copy', 'approved', 'Instagram: Clinic Opening Announcement', 'Visual announcement of March 2026 opening', '2026-03-20 09:00:00', 1);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute INSERT INTO content (clientId, monthlyPlanId, strategyId, stage, status, title, body, scheduledAt, createdBy) VALUES \n(1, 1, 1, 'topic', 'draft', 'LinkedIn Post: Dr. Vaheesan Introduction', 'Introduce Dr. Vaheesan and his 30+ years of experience', '2026-03-15 10:00:00', 1),\n(1, 1, 1, 'plan', 'pending_review', 'Facebook: No Knife Needed Campaign', 'Explain the pinhole advantage vs traditional surgery', '2026-03-18 14:00:00', 1),\n(1, 1, 1, 'copy', 'approved', 'Instagram: Clinic Opening Announcement', 'Visual announcement of March 2026 opening', '2026-03-20 09:00:00', 1);",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'body' in 'field list'"
+  ]
+}

@@ -17,8 +17,10 @@
 - [x] Content Planning - Calendar view with month navigation
 - [x] Content Planning backend API (list, get, create, update, approve, reject, delete)
 - [x] Content form with 4-stage tabs (Topic, Plan, Copy, Creative)
-- [x] Fixed monthly plan page error (missing columns)
+- [x] Fixed monthly plan page error (schema mismatch: lowercase columns in DB, camelCase in code)
 - [x] Fixed missing sidebar on content planning page
+- [x] Fixed date formatting in monthly plans (removed startDate/endDate, using month field)
+- [x] Added missing database columns (approvedby, approvedat, lockedat)
 - [x] Comment system for content approval workflow
 - [x] Content detail page with comments section
 - [x] Multi-action approval (Comment, Request Changes, Reject, Approve)

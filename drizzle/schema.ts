@@ -148,7 +148,7 @@ export type InsertStrategyCondition = typeof strategyConditions.$inferInsert;
  */
 export const monthlyPlans = mysqlTable("monthly_plans", {
   id: int("id").autoincrement().primaryKey(),
-  clientId: int("clientId").notNull(),
+  clientId: int("clientid").notNull(),
   name: varchar("name", { length: 255 }).notNull(), // "March 2026 Launch"
   month: varchar("month", { length: 7 }).notNull(), // "2026-03"
   status: mysqlEnum("status", ["draft", "pending_approval", "approved", "locked"]).default("draft").notNull(),
@@ -156,12 +156,12 @@ export const monthlyPlans = mysqlTable("monthly_plans", {
   // High-level themes and notes from leadership meeting
   notes: text("notes"),
   
-  createdBy: int("createdBy").notNull(),
-  approvedBy: int("approvedBy"),
-  approvedAt: timestamp("approvedAt"),
-  lockedAt: timestamp("lockedAt"),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+  createdBy: int("createdby").notNull(),
+  approvedBy: int("approvedby"),
+  approvedAt: timestamp("approvedat"),
+  lockedAt: timestamp("lockedat"),
+  createdAt: timestamp("createdat").defaultNow().notNull(),
+  updatedAt: timestamp("updatedat").defaultNow().notNull(),
 });
 
 export type MonthlyPlan = typeof monthlyPlans.$inferSelect;

@@ -132,8 +132,7 @@ export default function MonthlyPlans() {
                         {plan.name}
                       </CardTitle>
                       <CardDescription className="mt-1">
-                        {format(new Date(plan.startDate), "MMM d")} -{" "}
-                        {format(new Date(plan.endDate), "MMM d, yyyy")}
+                        {plan.month}
                       </CardDescription>
                     </div>
                     <DropdownMenu>

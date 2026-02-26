@@ -12,13 +12,18 @@ export const monthlyPlansRouter = router({
       const db = await getDb();
       if (!db) throw new Error("Database not available");
 
-      const plans = await db
-        .select()
-        .from(monthlyPlans)
-        .where(eq(monthlyPlans.clientId, input.clientId))
-        .orderBy(desc(monthlyPlans.createdAt));
+      try {
+        const plans = await db
+          .select()
+          .from(monthlyPlans)
+          .where(eq(monthlyPlans.clientId, input.clientId))
+          .orderBy(desc(monthlyPlans.createdAt));
 
-      return plans;
+        return plans;
+      } catch (error) {
+        console.error("Monthly plans query error:", error);
+        throw error;
+      }
     }),
 
   // Get a single monthly plan with strategies and scope

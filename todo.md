@@ -25,6 +25,11 @@
 - [x] Content detail page with comments section
 - [x] Multi-action approval (Comment, Request Changes, Reject, Approve)
 - [x] Status updates based on approval actions
+- [x] Updated portal logo to STL IOIR branding
+- [x] Created Google Drive integration infrastructure
+- [x] Built Files page with upload and browse UI
+- [x] Added file management backend API (ready for OAuth credentials)
+- [x] Implemented file grid with thumbnails and actions
 
 ## In Progress
 - [ ] Content form tab switching functionality (tabs need click handlers)

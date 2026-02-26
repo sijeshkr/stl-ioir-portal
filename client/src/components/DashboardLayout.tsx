@@ -176,9 +176,11 @@ function DashboardLayoutContent({
               </button>
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="font-semibold tracking-tight truncate">
-                    Navigation
-                  </span>
+                  <img 
+                    src="/stl-ioir-logo.png" 
+                    alt="STL IOIR" 
+                    className="h-10 w-auto object-contain"
+                  />
                 </div>
               ) : null}
             </div>

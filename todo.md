@@ -226,3 +226,9 @@
 - [x] Verify clientId is being passed correctly (confirmed in code)
 - [x] Restart dev server to ensure all changes picked up
 - [ ] Test ContentForm page after fixes
+
+## Content Page Missing clientId (Feb 27, 2026 - COMPLETE ✅)
+- [x] Fix missing clientId in personas.list query on Content page
+- [x] Fix missing clientId in services.list query on Content page
+- [x] Fix missing clientId in conditions.list query on Content page
+- [ ] Test Content page after fixes

@@ -78,9 +78,9 @@ export default function Content() {
   });
 
   // Fetch brand elements for tag display
-  const { data: personas } = trpc.personas.list.useQuery();
-  const { data: services } = trpc.services.list.useQuery();
-  const { data: conditions } = trpc.conditions.list.useQuery();
+  const { data: personas } = trpc.personas.list.useQuery({ clientId });
+  const { data: services } = trpc.services.list.useQuery({ clientId });
+  const { data: conditions } = trpc.conditions.list.useQuery({ clientId });
 
   // Helper function to get tag name by ID
   const getTagName = (tagType: string, tagId: number) => {

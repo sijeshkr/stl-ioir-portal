@@ -44,7 +44,7 @@ export default function ContentForm() {
   // Fetch content if editing
   const { data: content } = trpc.content.getById.useQuery(
     { id: parseInt(id!) },
-    { enabled: isEdit }
+    { enabled: isEdit && !isNaN(parseInt(id!)) }
   );
 
   // Fetch monthly plans for dropdown

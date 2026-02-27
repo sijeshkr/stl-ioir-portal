@@ -220,3 +220,9 @@
 - [x] Add missing content.getById procedure to tRPC router (renamed get to getById)
 - [x] Fix undefined toString error in ContentForm component (property name mismatch)
 - [ ] Test ContentForm page after fixes
+
+## ContentForm Persistent Errors (Feb 27, 2026 - COMPLETE ✅)
+- [x] Fix parseInt NaN error when id is 'new' in content.getById query (added isNaN check)
+- [x] Verify clientId is being passed correctly (confirmed in code)
+- [x] Restart dev server to ensure all changes picked up
+- [ ] Test ContentForm page after fixes

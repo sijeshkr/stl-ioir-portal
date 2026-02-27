@@ -268,6 +268,9 @@ export const contentCalendarTopics = mysqlTable("content_calendar_topics", {
   // Link to detailed content
   contentId: int("contentid"), // NULL until content is created
   
+  // Source identifier
+  source: mysqlEnum("source", ["monthly_plan", "manual"]).default("manual").notNull(),
+  
   notes: text("notes"),
   createdBy: int("createdby").notNull(),
   createdAt: timestamp("createdat").defaultNow().notNull(),

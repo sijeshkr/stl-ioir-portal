@@ -32,7 +32,7 @@ const menuItems = [
   { icon: Palette, label: "Brand Hub", path: "/brand" },
   { icon: Target, label: "Strategies", path: "/strategies" },
   { icon: Calendar, label: "Monthly Plans", path: "/monthly-plans" },
-  { icon: Calendar, label: "Calendar", path: "/calendar" },
+  { icon: Calendar, label: "Content Calendar", path: "/calendar" },
   { icon: FileText, label: "Content", path: "/content" },
   { icon: FolderOpen, label: "Files", path: "/files" },
   { icon: Ticket, label: "Tickets", path: "/tickets" },

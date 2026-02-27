@@ -131,3 +131,46 @@
 - [ ] Remove Manus OAuth dependencies
 - [ ] Test complete authentication flow
 - [ ] Add email verification (optional enhancement)
+
+## Ticket Management System (Feb 27, 2026 - In Progress)
+- [ ] Check existing ticket table schema in database
+- [ ] Build backend ticket API (create, list, update, delete, updateStatus)
+- [ ] Create Tickets page with list view
+- [ ] Add ticket filters (status, priority, type, assignee)
+- [ ] Build ticket creation dialog with form validation
+- [ ] Build ticket edit dialog
+- [ ] Add ticket detail view with full information
+- [ ] Add ticket comments/activity tracking
+- [ ] Add ticket assignment to team members
+- [ ] Test complete ticket workflow
+- [ ] Push to GitHub
+
+## Monthly Plan & Calendar Fixes (Feb 27, 2026 - In Progress)
+- [x] Fix monthly plan save functionality (removed startDate/endDate references)
+- [ ] Update Content Calendar to show monthly plan placeholder posts instead of calendar topics
+- [x] Rename "Calendar" menu item to "Content Calendar" in sidebar
+- [x] Verify Monthly Plan selection exists in Content Planning page (already present)
+- [ ] Test monthly plan creation and calendar display
+- [ ] Push fixes to GitHub
+
+## Content Filters Enhancement (Feb 27, 2026 - In Progress)
+- [x] Add Platform filter dropdown to Content page (LinkedIn, Facebook, Instagram, Twitter)
+- [x] Add Content Format filter dropdown (Post, Video, Story, Carousel, etc.)
+- [x] Add Status filter dropdown (Draft, In Review, Approved, Published)
+- [ ] Add Monthly Plan filter dropdown
+- [ ] Update content list query to support filtering
+- [ ] Test all filter combinations
+
+## Content Calendar Auto-Generation (Feb 27, 2026 - In Progress)
+- [x] Add source identifier field to content_calendar_topics table (monthly_plan vs manual)
+- [x] Create API to auto-generate placeholder posts from Monthly Plan content scope
+- [ ] Update Content Calendar to display both auto-generated and manual posts
+- [ ] Add visual distinction between auto-generated and manual posts in UI
+- [ ] Test calendar with mixed content sources
+
+## Monday.com Field Parity (Feb 27, 2026 - New)
+- [ ] Add assignee/person field to content_calendar_topics
+- [ ] Add file attachments field to content_calendar_topics
+- [ ] Add due date field (separate from posting date)
+- [ ] Update Content Calendar UI to show all Monday.com equivalent fields
+- [ ] Add file upload functionality to calendar topics

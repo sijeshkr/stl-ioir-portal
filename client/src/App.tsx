@@ -17,6 +17,7 @@ import ContentDetail from "./pages/ContentDetail";
 import ContentTopicsCalendar from "./pages/ContentTopicsCalendar";
 import Files from "./pages/Files";
 import BrandHub from "./pages/BrandHub";
+import Tickets from "./pages/Tickets";
 
 function Router() {
   const { isAuthenticated, loading } = useAuth();
@@ -93,6 +94,10 @@ function Router() {
       
       <Route path="/brand">
         {isAuthenticated ? <BrandHub /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/tickets">
+        {isAuthenticated ? <Tickets /> : <Redirect to="/login" />}
       </Route>
       
       <Route component={NotFound} />

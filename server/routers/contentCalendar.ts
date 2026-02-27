@@ -235,4 +235,90 @@ export const contentCalendarRouter = router({
 
       return { success: true };
     }),
+
+  // Auto-generate placeholder posts from Monthly Plan content scope
+  generateFromMonthlyPlan: protectedProcedure
+    .input(
+      z.object({
+        monthlyPlanId: z.number(),
+        month: z.string(), // YYYY-MM format
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const db = await getDb();
+      if (!db) throw new Error("Database not available");
+
+      // Import contentScope and monthlyPlans tables
+      const { contentScope, monthlyPlans } = await import("../../drizzle/schema");
+
+      // Get monthly plan details
+      const plan = await db
+        .select()
+        .from(monthlyPlans)
+        .where(eq(monthlyPlans.id, input.monthlyPlanId))
+        .limit(1);
+
+      if (!plan[0]) {
+        throw new Error("Monthly plan not found");
+      }
+
+      // Get content scope for this monthly plan
+      const scopes = await db
+        .select()
+        .from(contentScope)
+        .where(eq(contentScope.monthlyPlanId, input.monthlyPlanId));
+
+      if (scopes.length === 0) {
+        throw new Error("No content scope defined for this monthly plan");
+      }
+
+      // Parse month to get start and end dates
+      const [year, month] = input.month.split("-");
+      const startDate = new Date(parseInt(year), parseInt(month) - 1, 1);
+      const endDate = new Date(parseInt(year), parseInt(month), 0); // Last day of month
+      const daysInMonth = endDate.getDate();
+
+      // Generate placeholder posts for each scope item
+      const placeholders = [];
+      
+      for (const scope of scopes) {
+        const quantity = scope.quantity;
+        const platform = scope.platform as "linkedin" | "facebook" | "instagram" | "twitter" | "tiktok" | "youtube" | "blog" | "newsletter" | "gmb";
+        const contentType = scope.contentType;
+
+        // Distribute posts evenly across the month
+        const interval = Math.floor(daysInMonth / quantity);
+
+        for (let i = 0; i < quantity; i++) {
+          const dayOfMonth = Math.min((i * interval) + 1, daysInMonth);
+          const scheduledDate = `${year}-${month.padStart(2, "0")}-${dayOfMonth.toString().padStart(2, "0")}`;
+
+          placeholders.push({
+            clientId: ctx.user.clientId,
+            monthlyPlanId: input.monthlyPlanId,
+            strategyId: plan[0].strategyId || null,
+            scheduledDate,
+            topicTitle: `${platform.toUpperCase()} ${contentType} #${i + 1}`,
+            cta: null,
+            audience: null,
+            platform,
+            notes: `Auto-generated from monthly plan content scope`,
+            status: "planned" as const,
+            source: "monthly_plan" as const,
+            createdBy: ctx.user.id,
+          });
+        }
+      }
+
+      // Insert all placeholders
+      if (placeholders.length > 0) {
+        await db.insert(contentCalendarTopics).values(placeholders);
+      }
+
+      return {
+        success: true,
+        generated: placeholders.length,
+        message: `Generated ${placeholders.length} placeholder posts`,
+      };
+    }),
 });

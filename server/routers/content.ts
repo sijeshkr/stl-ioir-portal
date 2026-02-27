@@ -14,7 +14,9 @@ export const contentRouter = router({
     .input(z.object({ 
       monthlyPlanId: z.number(),
       stage: z.enum(["topic", "plan", "copy", "creative", "all"]).optional(),
-      status: z.enum(["draft", "pending_approval", "approved", "rejected", "all"]).optional()
+      status: z.enum(["draft", "pending_approval", "approved", "rejected", "all"]).optional(),
+      platform: z.enum(["linkedin", "facebook", "instagram", "twitter", "all"]).optional(),
+      format: z.enum(["post", "video", "story", "carousel", "reel", "all"]).optional()
     }))
     .query(async ({ input }) => {
       const db = await getDb();
@@ -28,13 +30,19 @@ export const contentRouter = router({
       // Apply filters
       const items = await query.orderBy(desc(content.scheduledDate));
 
-      // Filter by stage and status in memory (simpler than complex SQL)
+      // Filter by stage, status, platform, and format in memory (simpler than complex SQL)
       let filtered = items;
       if (input.stage && input.stage !== "all") {
         filtered = filtered.filter(item => item.stage === input.stage);
       }
       if (input.status && input.status !== "all") {
         filtered = filtered.filter(item => item.status === input.status);
+      }
+      if (input.platform && input.platform !== "all") {
+        filtered = filtered.filter(item => item.platform === input.platform);
+      }
+      if (input.format && input.format !== "all") {
+        filtered = filtered.filter(item => item.contentFormat === input.format);
       }
 
       // Fetch tags for each content item

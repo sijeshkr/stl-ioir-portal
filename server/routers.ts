@@ -13,6 +13,7 @@ import { conditionsRouter } from "./routers/conditions";
 import { brandGuidelinesRouter } from "./routers/brandGuidelines";
 import { brandAssetsRouter } from "./routers/brandAssets";
 import { customAuthRouter } from "./routers/customAuth";
+import { ticketsRouter } from "./routers/tickets";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -40,6 +41,7 @@ export const appRouter = router({
   conditions: conditionsRouter,
   brandGuidelines: brandGuidelinesRouter,
   brandAssets: brandAssetsRouter,
+  tickets: ticketsRouter,
 });
 
 export type AppRouter = typeof appRouter;

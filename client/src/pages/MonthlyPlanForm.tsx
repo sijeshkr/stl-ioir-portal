@@ -108,7 +108,7 @@ export default function MonthlyPlanForm() {
   });
 
   const handleSave = (status: "draft" | "pending_approval") => {
-    if (!name || !month || !startDate || !endDate) {
+    if (!name || !month) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -117,8 +117,6 @@ export default function MonthlyPlanForm() {
       clientId,
       name,
       month,
-      startDate,
-      endDate,
       notes,
       strategies,
       scope,

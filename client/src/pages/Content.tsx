@@ -60,6 +60,8 @@ export default function Content() {
   const [viewMode, setViewMode] = useState<"calendar" | "kanban" | "list">("list");
   const [selectedStage, setSelectedStage] = useState<"all" | "topic" | "plan" | "copy" | "creative">("all");
   const [selectedStatus, setSelectedStatus] = useState<"all" | "draft" | "pending_approval" | "approved" | "rejected">("all");
+  const [selectedPlatform, setSelectedPlatform] = useState<"all" | "linkedin" | "facebook" | "instagram" | "twitter">("all");
+  const [selectedFormat, setSelectedFormat] = useState<"all" | "post" | "video" | "story" | "carousel" | "reel">("all");
 
   // For now, hardcode clientId and monthlyPlanId
   // In production, these would come from URL params or context
@@ -69,7 +71,9 @@ export default function Content() {
   const { data: contentItems, isLoading, refetch } = trpc.content.list.useQuery({
     monthlyPlanId,
     stage: selectedStage,
-    status: selectedStatus
+    status: selectedStatus,
+    platform: selectedPlatform,
+    format: selectedFormat
   });
 
   // Fetch brand elements for tag display
@@ -172,6 +176,35 @@ export default function Content() {
             <option value="pending_approval">Pending Approval</option>
             <option value="approved">Approved</option>
             <option value="rejected">Rejected</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-medium text-gray-700 mr-2">Platform:</label>
+          <select
+            value={selectedPlatform}
+            onChange={(e) => setSelectedPlatform(e.target.value as any)}
+            className="border border-gray-300 rounded-md px-3 py-1.5 text-sm"
+          >
+            <option value="all">All Platforms</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="facebook">Facebook</option>
+            <option value="instagram">Instagram</option>
+            <option value="twitter">Twitter</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-sm font-medium text-gray-700 mr-2">Format:</label>
+          <select
+            value={selectedFormat}
+            onChange={(e) => setSelectedFormat(e.target.value as any)}
+            className="border border-gray-300 rounded-md px-3 py-1.5 text-sm"
+          >
+            <option value="all">All Formats</option>
+            <option value="post">Post</option>
+            <option value="video">Video</option>
+            <option value="story">Story</option>
+            <option value="carousel">Carousel</option>
+            <option value="reel">Reel</option>
           </select>
         </div>
       </div>

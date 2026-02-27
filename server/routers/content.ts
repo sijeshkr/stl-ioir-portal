@@ -37,7 +37,22 @@ export const contentRouter = router({
         filtered = filtered.filter(item => item.status === input.status);
       }
 
-      return filtered;
+      // Fetch tags for each content item
+      const itemsWithTags = await Promise.all(
+        filtered.map(async (item) => {
+          const tags = await db
+            .select()
+            .from(contentTags)
+            .where(eq(contentTags.contentId, item.id));
+          
+          return {
+            ...item,
+            tags
+          };
+        })
+      );
+
+      return itemsWithTags;
     }),
 
   // Get a single content item with all details

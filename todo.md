@@ -85,3 +85,10 @@
 - [x] Save content tags to database when content is created/updated
 - [ ] Display tags on content list and detail pages (future enhancement)
 - [ ] Complete database migration (personas, services, conditions, brandGuidelines, brandAssets tables)
+
+## Tag Display Enhancement (Feb 27, 2026) - COMPLETE ✅
+- [x] Update content list query to fetch tags with content items
+- [x] Fetch persona/service/condition details for tag display
+- [x] Add tag badges to content list UI with icons (Users, Briefcase, Heart)
+- [x] Style tag badges with different colors per tag type (blue=persona, green=service, pink=condition)
+- [x] Display actual tag names instead of IDs

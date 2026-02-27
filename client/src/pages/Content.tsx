@@ -4,6 +4,7 @@ import ContentKanban from "./ContentKanban";
 import ContentCalendar from "./ContentCalendar";
 import { useLocation, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { Users, Briefcase, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -70,6 +71,23 @@ export default function Content() {
     stage: selectedStage,
     status: selectedStatus
   });
+
+  // Fetch brand elements for tag display
+  const { data: personas } = trpc.personas.list.useQuery();
+  const { data: services } = trpc.services.list.useQuery();
+  const { data: conditions } = trpc.conditions.list.useQuery();
+
+  // Helper function to get tag name by ID
+  const getTagName = (tagType: string, tagId: number) => {
+    if (tagType === 'persona') {
+      return personas?.find(p => p.id === tagId)?.name || `Persona #${tagId}`;
+    } else if (tagType === 'service') {
+      return services?.find(s => s.id === tagId)?.name || `Service #${tagId}`;
+    } else if (tagType === 'condition') {
+      return conditions?.find(c => c.id === tagId)?.name || `Condition #${tagId}`;
+    }
+    return '';
+  };
 
   const deleteContent = trpc.content.delete.useMutation({
     onSuccess: () => {
@@ -220,6 +238,48 @@ export default function Content() {
 
                           {item.topicDescription && (
                             <p className="text-sm text-gray-600 mt-2 line-clamp-2">{item.topicDescription}</p>
+                          )}
+
+                          {/* Brand Tags */}
+                          {item.tags && item.tags.length > 0 && (
+                            <div className="flex items-center gap-2 mt-3 flex-wrap">
+                              {item.tags.filter((tag: any) => tag.tagType === 'persona').length > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <Users className="h-3 w-3 text-blue-600" />
+                                  {item.tags
+                                    .filter((tag: any) => tag.tagType === 'persona')
+                                    .map((tag: any) => (
+                                      <Badge key={tag.id} variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                                        {getTagName('persona', tag.tagId)}
+                                      </Badge>
+                                    ))}
+                                </div>
+                              )}
+                              {item.tags.filter((tag: any) => tag.tagType === 'service').length > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <Briefcase className="h-3 w-3 text-green-600" />
+                                  {item.tags
+                                    .filter((tag: any) => tag.tagType === 'service')
+                                    .map((tag: any) => (
+                                      <Badge key={tag.id} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                                        {getTagName('service', tag.tagId)}
+                                      </Badge>
+                                    ))}
+                                </div>
+                              )}
+                              {item.tags.filter((tag: any) => tag.tagType === 'condition').length > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <Heart className="h-3 w-3 text-pink-600" />
+                                  {item.tags
+                                    .filter((tag: any) => tag.tagType === 'condition')
+                                    .map((tag: any) => (
+                                      <Badge key={tag.id} variant="outline" className="text-xs bg-pink-50 text-pink-700 border-pink-200">
+                                        {getTagName('condition', tag.tagId)}
+                                      </Badge>
+                                    ))}
+                                </div>
+                              )}
+                            </div>
                           )}
                         </div>
 

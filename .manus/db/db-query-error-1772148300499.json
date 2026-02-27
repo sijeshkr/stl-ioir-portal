@@ -1,8 +1,0 @@
-{
-  "query": "SELECT id, clientId, name, month, status, notes, createdBy, approvedBy, approvedAt, lockedAt, createdAt, updatedAt FROM monthly_plans WHERE clientId = 1 ORDER BY createdAt DESC;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute SELECT id, clientId, name, month, status, notes, createdBy, approvedBy, approvedAt, lockedAt, createdAt, updatedAt FROM monthly_plans WHERE clientId = 1 ORDER BY createdAt DESC;",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1054 (42S22) at line 1: Unknown column 'lockedat' in 'field list'"
-  ]
-}

@@ -1,8 +1,0 @@
-{
-  "query": "SET GLOBAL tidb_multi_statement_mode='ON'",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute SET GLOBAL tidb_multi_statement_mode='ON'",
-  "returncode": 1,
-  "logs": [
-    "ERROR 1227 (42000) at line 1: Access denied; you need (at least one of) the SUPER or SYSTEM_VARIABLES_ADMIN privilege(s) for this operation"
-  ]
-}

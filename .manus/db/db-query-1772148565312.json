@@ -1,9 +1,0 @@
-{
-  "query": "ALTER TABLE monthly_plans \nADD COLUMN IF NOT EXISTS approvedby INT NULL,\nADD COLUMN IF NOT EXISTS approvedat TIMESTAMP NULL,\nADD COLUMN IF NOT EXISTS lockedat TIMESTAMP NULL;",
-  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute ALTER TABLE monthly_plans \nADD COLUMN IF NOT EXISTS approvedby INT NULL,\nADD COLUMN IF NOT EXISTS approvedat TIMESTAMP NULL,\nADD COLUMN IF NOT EXISTS lockedat TIMESTAMP NULL;",
-  "rows": [],
-  "messages": [],
-  "stdout": "",
-  "stderr": "",
-  "execution_time_ms": 478
-}

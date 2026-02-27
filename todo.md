@@ -232,3 +232,9 @@
 - [x] Fix missing clientId in services.list query on Content page
 - [x] Fix missing clientId in conditions.list query on Content page
 - [ ] Test Content page after fixes
+
+## Content Page Persistent clientId Errors (Feb 27, 2026 - COMPLETE ✅)
+- [x] Verify Content.tsx file has clientId parameters in personas/services/conditions queries
+- [x] Found missing clientId in content.list.useQuery (was only passing monthlyPlanId)
+- [x] Added clientId to content.list.useQuery
+- [ ] Test Content page after fix

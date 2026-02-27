@@ -70,6 +70,7 @@ export default function Content() {
   const monthlyPlanId = 1;
 
   const { data: contentItems, isLoading, refetch } = trpc.content.list.useQuery({
+    clientId,
     monthlyPlanId,
     stage: selectedStage,
     status: selectedStatus,

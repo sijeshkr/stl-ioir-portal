@@ -12,10 +12,12 @@ import { servicesRouter } from "./routers/services";
 import { conditionsRouter } from "./routers/conditions";
 import { brandGuidelinesRouter } from "./routers/brandGuidelines";
 import { brandAssetsRouter } from "./routers/brandAssets";
+import { customAuthRouter } from "./routers/customAuth";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
+  customAuth: customAuthRouter, // Custom email/password authentication
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

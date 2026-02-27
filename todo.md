@@ -112,3 +112,22 @@
 - [x] Verify sidebar consistency across all pages
 - [ ] Create checkpoint for publishing (in progress)
 - [ ] Guide user through publishing process in Management UI
+
+## Custom Email/Password Authentication (Feb 27, 2026 - In Progress)
+- [x] Update user table schema to support email/password authentication
+- [x] Add password hashing with bcrypt
+- [x] Build registration endpoint with email validation
+- [x] Build login endpoint with session management
+- [x] Build logout endpoint
+- [x] Build password reset flow (request reset, verify token, update password)
+- [x] Create customAuth router with all endpoints
+- [x] Add customAuth router to main routers file
+- [ ] Create Login page UI
+- [ ] Create Registration page UI
+- [ ] Create Forgot Password page UI
+- [ ] Create Reset Password page UI
+- [ ] Update authentication context to use custom auth
+- [ ] Update useAuth hook for email/password flow
+- [ ] Remove Manus OAuth dependencies
+- [ ] Test complete authentication flow
+- [ ] Add email verification (optional enhancement)

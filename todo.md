@@ -70,8 +70,9 @@
 ## Brand Hub Module (Feb 27, 2026) - COMPLETE ✅
 - [x] Create brand-level database tables (personas, services, conditions, brandGuidelines, brandAssets)
 - [x] Create Brand Hub backend APIs (personas, services, conditions, brandGuidelines, brandAssets CRUD)
-- [x] Build Brand Hub page with 5-tab interface
+- [x] Build Brand Hub page with 6-tab interface (Dashboard, Guidelines, Personas, Services, Conditions, Assets)
 - [x] Add Brand Hub menu item to sidebar navigation
+- [x] Brand Hub Dashboard tab with overview metrics and quick actions
 - [x] Personas management tab with full CRUD (create, edit, delete, list)
 - [x] Services management tab with full CRUD
 - [x] Conditions management tab with full CRUD
@@ -92,3 +93,13 @@
 - [x] Add tag badges to content list UI with icons (Users, Briefcase, Heart)
 - [x] Style tag badges with different colors per tag type (blue=persona, green=service, pink=condition)
 - [x] Display actual tag names instead of IDs
+
+## Sidebar Consistency Fix (Feb 27, 2026) - COMPLETE ✅
+- [x] Investigate Dashboard page layout implementation
+- [x] Fix Dashboard page to use consistent DashboardLayout component
+- [x] Ensure all menu items (Brand Hub, Calendar) are visible on Dashboard
+- [x] Fix font sizes to match other pages
+- [x] Test navigation consistency across all pages
+- [x] Fix Brand Hub to use DashboardLayout (sidebar was missing)
+- [x] Add Brand Hub Dashboard tab with metrics (personas, services, conditions, brand status)
+- [x] Add Quick Actions section with clickable cards to navigate to brand management tabs

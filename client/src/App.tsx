@@ -16,6 +16,7 @@ import ContentForm from "./pages/ContentForm";
 import ContentDetail from "./pages/ContentDetail";
 import ContentTopicsCalendar from "./pages/ContentTopicsCalendar";
 import Files from "./pages/Files";
+import BrandHub from "./pages/BrandHub";
 
 function Router() {
   const { isAuthenticated, loading } = useAuth();
@@ -88,6 +89,10 @@ function Router() {
       
       <Route path="/files">
         {isAuthenticated ? <Files /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/brand">
+        {isAuthenticated ? <BrandHub /> : <Redirect to="/login" />}
       </Route>
       
       <Route component={NotFound} />

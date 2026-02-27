@@ -412,3 +412,66 @@ export const clientSettings = mysqlTable("client_settings", {
 
 export type ClientSettings = typeof clientSettings.$inferSelect;
 export type InsertClientSettings = typeof clientSettings.$inferInsert;
+
+// ============================================
+// BRAND DNA (Client-Level)
+// ============================================
+
+/**
+ * Brand Personas - Client-level target audiences (reusable across strategies)
+ */
+export const personas = mysqlTable("personas", {
+  id: int("id").autoincrement().primaryKey(),
+  clientId: int("clientId").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  demographics: text("demographics"), // Age, location, income, etc.
+  psychographics: text("psychographics"), // Values, interests, lifestyle
+  painPoints: text("painPoints"), // Problems they face
+  goals: text("goals"), // What they want to achieve
+  preferredChannels: text("preferredChannels"), // LinkedIn, Facebook, etc.
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Persona = typeof personas.$inferSelect;
+export type InsertPersona = typeof personas.$inferInsert;
+
+/**
+ * Brand Services - Client-level services (reusable across strategies)
+ */
+export const services = mysqlTable("services", {
+  id: int("id").autoincrement().primaryKey(),
+  clientId: int("clientId").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  category: varchar("category", { length: 255 }), // "Interventional Oncology", "Vascular", etc.
+  benefits: text("benefits"), // Key benefits
+  targetPersonas: text("targetPersonas"), // JSON array of persona IDs
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Service = typeof services.$inferSelect;
+export type InsertService = typeof services.$inferInsert;
+
+/**
+ * Brand Conditions - Client-level conditions treated (reusable across strategies)
+ */
+export const conditions = mysqlTable("conditions", {
+  id: int("id").autoincrement().primaryKey(),
+  clientId: int("clientId").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  symptoms: text("symptoms"), // Common symptoms
+  treatments: text("treatments"), // Available treatments
+  relatedServices: text("relatedServices"), // JSON array of service IDs
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Condition = typeof conditions.$inferSelect;
+export type InsertCondition = typeof conditions.$inferInsert;

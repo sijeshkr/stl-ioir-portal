@@ -5,6 +5,8 @@ import { Palette, Users, Briefcase, Heart, FileText } from "lucide-react";
 import { PersonasTab } from "@/components/brand/PersonasTab";
 import { ServicesTab } from "@/components/brand/ServicesTab";
 import { ConditionsTab } from "@/components/brand/ConditionsTab";
+import { GuidelinesTab } from "@/components/brand/GuidelinesTab";
+import { AssetsTab } from "@/components/brand/AssetsTab";
 
 export default function BrandHub() {
   const [activeTab, setActiveTab] = useState("guidelines");
@@ -43,17 +45,7 @@ export default function BrandHub() {
         </TabsList>
 
         <TabsContent value="guidelines">
-          <Card>
-            <CardHeader>
-              <CardTitle>Brand Guidelines</CardTitle>
-              <CardDescription>
-                Define your brand voice, tone, messaging, and positioning
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">Brand guidelines content coming soon...</p>
-            </CardContent>
-          </Card>
+          <GuidelinesTab />
         </TabsContent>
 
         <TabsContent value="personas">
@@ -69,17 +61,7 @@ export default function BrandHub() {
         </TabsContent>
 
         <TabsContent value="assets">
-          <Card>
-            <CardHeader>
-              <CardTitle>Brand Assets</CardTitle>
-              <CardDescription>
-                Manage logos, colors, fonts, and other brand materials
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">Brand assets management coming soon...</p>
-            </CardContent>
-          </Card>
+          <AssetsTab />
         </TabsContent>
       </Tabs>
     </div>

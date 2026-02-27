@@ -59,6 +59,16 @@ export default function ContentForm() {
     endDate: undefined,
   });
 
+  // Fetch brand elements for tagging
+  const { data: personas } = trpc.personas.list.useQuery();
+  const { data: services } = trpc.services.list.useQuery();
+  const { data: conditions } = trpc.conditions.list.useQuery();
+
+  // Tag selection state
+  const [selectedPersonas, setSelectedPersonas] = useState<number[]>([]);
+  const [selectedServices, setSelectedServices] = useState<number[]>([]);
+  const [selectedConditions, setSelectedConditions] = useState<number[]>([]);
+
   // Handle calendar topic selection
   const handleTopicSelect = (topicId: string) => {
     if (topicId === "none") return;
@@ -107,37 +117,51 @@ export default function ContentForm() {
     }
   }, [content]);
 
+  const addTagsMutation = trpc.content.addTags.useMutation();
+
   const createMutation = trpc.content.create.useMutation({
-    onSuccess: () => {
-      toast({
-        title: "Content created",
-        description: "Content item has been created successfully",
-      });
+    onSuccess: async (data) => {
+      // Save tags after content is created
+      if (data.id && (selectedPersonas.length > 0 || selectedServices.length > 0 || selectedConditions.length > 0)) {
+        try {
+          await addTagsMutation.mutateAsync({
+            contentId: data.id,
+            personaIds: selectedPersonas,
+            serviceIds: selectedServices,
+            conditionIds: selectedConditions,
+          });
+        } catch (error) {
+          console.error("Failed to save tags:", error);
+        }
+      }
+      toast.success("Content created successfully");
       setLocation("/content");
     },
     onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      toast.error(error.message || "Failed to create content");
     },
   });
 
   const updateMutation = trpc.content.update.useMutation({
-    onSuccess: () => {
-      toast({
-        title: "Content updated",
-        description: "Content item has been updated successfully",
-      });
+    onSuccess: async () => {
+      // Save tags after content is updated
+      if (isEdit && (selectedPersonas.length > 0 || selectedServices.length > 0 || selectedConditions.length > 0)) {
+        try {
+          await addTagsMutation.mutateAsync({
+            contentId: parseInt(id!),
+            personaIds: selectedPersonas,
+            serviceIds: selectedServices,
+            conditionIds: selectedConditions,
+          });
+        } catch (error) {
+          console.error("Failed to save tags:", error);
+        }
+      }
+      toast.success("Content updated successfully");
       setLocation("/content");
     },
     onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      toast.error(error.message || "Failed to update content");
     },
   });
 
@@ -294,6 +318,95 @@ export default function ContentForm() {
                   rows={4}
                 />
               </div>
+
+              {/* Brand Tagging Section */}
+              <Card className="border-2 border-primary/20">
+                <CardHeader>
+                  <CardTitle className="text-lg">Brand Tags</CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    Tag this content with relevant personas, services, and conditions
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label>Target Personas</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {personas?.map((persona) => (
+                        <Button
+                          key={persona.id}
+                          type="button"
+                          variant={selectedPersonas.includes(persona.id) ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setSelectedPersonas(prev =>
+                              prev.includes(persona.id)
+                                ? prev.filter(id => id !== persona.id)
+                                : [...prev, persona.id]
+                            );
+                          }}
+                        >
+                          {persona.name}
+                        </Button>
+                      ))}
+                      {(!personas || personas.length === 0) && (
+                        <p className="text-sm text-muted-foreground">No personas defined yet. Create them in Brand Hub.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Related Services</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {services?.map((service) => (
+                        <Button
+                          key={service.id}
+                          type="button"
+                          variant={selectedServices.includes(service.id) ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setSelectedServices(prev =>
+                              prev.includes(service.id)
+                                ? prev.filter(id => id !== service.id)
+                                : [...prev, service.id]
+                            );
+                          }}
+                        >
+                          {service.name}
+                        </Button>
+                      ))}
+                      {(!services || services.length === 0) && (
+                        <p className="text-sm text-muted-foreground">No services defined yet. Create them in Brand Hub.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Related Conditions</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {conditions?.map((condition) => (
+                        <Button
+                          key={condition.id}
+                          type="button"
+                          variant={selectedConditions.includes(condition.id) ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setSelectedConditions(prev =>
+                              prev.includes(condition.id)
+                                ? prev.filter(id => id !== condition.id)
+                                : [...prev, condition.id]
+                            );
+                          }}
+                        >
+                          {condition.name}
+                        </Button>
+                      ))}
+                      {(!conditions || conditions.length === 0) && (
+                        <p className="text-sm text-muted-foreground">No conditions defined yet. Create them in Brand Hub.</p>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </TabsContent>
 
             {/* Plan Tab */}

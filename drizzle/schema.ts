@@ -475,3 +475,71 @@ export const conditions = mysqlTable("conditions", {
 
 export type Condition = typeof conditions.$inferSelect;
 export type InsertCondition = typeof conditions.$inferInsert;
+
+/**
+ * Brand Guidelines - Client-level brand voice, tone, and messaging
+ */
+export const brandGuidelines = mysqlTable("brand_guidelines", {
+  id: int("id").autoincrement().primaryKey(),
+  clientId: int("clientId").notNull().unique(), // One set of guidelines per client
+  
+  // Brand Identity
+  tagline: varchar("tagline", { length: 255 }),
+  positioningStatement: text("positioningStatement"),
+  
+  // Voice & Tone
+  brandVoice: text("brandVoice"), // e.g., "Professional, Compassionate, Expert"
+  toneGuidelines: text("toneGuidelines"), // How to communicate in different contexts
+  
+  // Messaging
+  keyMessages: text("keyMessages"), // JSON array of core messages
+  messagingPillars: text("messagingPillars"), // JSON array of pillars
+  valueProposition: text("valueProposition"),
+  
+  // Do's and Don'ts
+  languageDos: text("languageDos"), // What language to use
+  languageDonts: text("languageDonts"), // What to avoid
+  
+  // Metadata
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BrandGuideline = typeof brandGuidelines.$inferSelect;
+export type InsertBrandGuideline = typeof brandGuidelines.$inferInsert;
+
+/**
+ * Brand Assets - Client-level brand assets (logos, colors, typography)
+ */
+export const brandAssets = mysqlTable("brand_assets", {
+  id: int("id").autoincrement().primaryKey(),
+  clientId: int("clientId").notNull().unique(), // One set of assets per client
+  
+  // Logos
+  primaryLogoUrl: varchar("primaryLogoUrl", { length: 500 }),
+  secondaryLogoUrl: varchar("secondaryLogoUrl", { length: 500 }),
+  iconUrl: varchar("iconUrl", { length: 500 }),
+  
+  // Color Palette
+  primaryColor: varchar("primaryColor", { length: 50 }), // e.g., "#0073E6"
+  secondaryColor: varchar("secondaryColor", { length: 50 }),
+  accentColor: varchar("accentColor", { length: 50 }),
+  backgroundColor: varchar("backgroundColor", { length: 50 }),
+  textColor: varchar("textColor", { length: 50 }),
+  
+  // Typography
+  primaryFont: varchar("primaryFont", { length: 100 }), // e.g., "Outfit"
+  secondaryFont: varchar("secondaryFont", { length: 100 }),
+  headingFontSize: varchar("headingFontSize", { length: 50 }), // e.g., "32px"
+  bodyFontSize: varchar("bodyFontSize", { length: 50 }),
+  fontWeights: text("fontWeights"), // JSON: { light: 300, regular: 400, bold: 700 }
+  
+  // Metadata
+  createdBy: int("createdBy").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BrandAsset = typeof brandAssets.$inferSelect;
+export type InsertBrandAsset = typeof brandAssets.$inferInsert;

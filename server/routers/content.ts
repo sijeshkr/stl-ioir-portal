@@ -64,7 +64,7 @@ export const contentRouter = router({
     }),
 
   // Get a single content item with all details
-  get: protectedProcedure
+  getById: protectedProcedure
     .input(z.object({ id: z.number() }))
     .query(async ({ input }) => {
       const db = await getDb();

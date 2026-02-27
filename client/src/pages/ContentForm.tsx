@@ -62,9 +62,9 @@ export default function ContentForm() {
   });
 
   // Fetch brand elements for tagging
-  const { data: personas } = trpc.personas.list.useQuery();
-  const { data: services } = trpc.services.list.useQuery();
-  const { data: conditions } = trpc.conditions.list.useQuery();
+  const { data: personas } = trpc.personas.list.useQuery({ clientId });
+  const { data: services } = trpc.services.list.useQuery({ clientId });
+  const { data: conditions } = trpc.conditions.list.useQuery({ clientId });
 
   // Tag selection state
   const [selectedPersonas, setSelectedPersonas] = useState<number[]>([]);
@@ -79,11 +79,11 @@ export default function ContentForm() {
     if (topic) {
       setFormData({
         ...formData,
-        monthlyPlanId: topic.monthlyplanid,
-        topicTitle: topic.topictitle,
+        monthlyPlanId: topic.monthlyPlanId,
+        topicTitle: topic.topicTitle,
         platform: topic.platform,
         topicDescription: topic.cta || "",
-        scheduledDate: topic.scheduleddate,
+        scheduledDate: topic.scheduledDate,
       });
       toast.success("Topic details loaded from calendar");
     }
@@ -234,7 +234,7 @@ export default function ContentForm() {
                   <SelectItem value="none">Start from scratch</SelectItem>
                   {calendarTopics?.map((topic: any) => (
                     <SelectItem key={topic.id} value={topic.id.toString()}>
-                      {new Date(topic.scheduleddate).toLocaleDateString()} - {topic.topictitle} ({topic.platform})
+                      {topic.scheduledDate ? new Date(topic.scheduledDate).toLocaleDateString() : "No date"} - {topic.topicTitle} ({topic.platform})
                     </SelectItem>
                   ))}
                 </SelectContent>

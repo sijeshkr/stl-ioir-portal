@@ -212,3 +212,11 @@
 - [x] Debug Invalid time value error in ContentTopicsCalendar component (property name mismatch)
 - [x] Fix date formatting issue causing RangeError (changed topic.scheduleddate to topic.scheduledDate with null check)
 - [ ] Test Content Calendar page after fix
+
+## ContentForm Page Errors (Feb 27, 2026 - COMPLETE ✅)
+- [x] Fix missing clientId in personas.list query
+- [x] Fix missing clientId in services.list query  
+- [x] Fix missing clientId in conditions.list query
+- [x] Add missing content.getById procedure to tRPC router (renamed get to getById)
+- [x] Fix undefined toString error in ContentForm component (property name mismatch)
+- [ ] Test ContentForm page after fixes

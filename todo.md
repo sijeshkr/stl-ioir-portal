@@ -201,3 +201,9 @@
 - [x] Fix clientId using 'default' in auto-generation insert statements (now uses plan[0].clientId)
 - [x] Fix generateFromMonthlyPlan API input validation error
 - [ ] Test auto-generation feature end-to-end
+
+## Content Calendar Remaining Errors (Feb 27, 2026 - COMPLETE ✅)
+- [x] Check content_calendar_topics table schema for column mismatches (added missing source column)
+- [x] Fix monthlyPlans.list.useQuery undefined parameter error (TopicDialog.tsx and ContentForm.tsx)
+- [x] Verify all database migrations completed successfully
+- [ ] Test Content Calendar page end-to-end

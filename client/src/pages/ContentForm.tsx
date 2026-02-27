@@ -48,13 +48,15 @@ export default function ContentForm() {
   );
 
   // Fetch monthly plans for dropdown
-  const { data: monthlyPlans } = trpc.monthlyPlans.list.useQuery({});
+  const clientId = 1; // TODO: Get from context
+  const { data: monthlyPlans } = trpc.monthlyPlans.list.useQuery({ clientId });
 
   // Fetch strategies for dropdown
-  const { data: strategies } = trpc.strategies.list.useQuery({});
+  const { data: strategies } = trpc.strategies.list.useQuery({ clientId });
 
   // Fetch calendar topics for picker
   const { data: calendarTopics } = trpc.contentCalendar.list.useQuery({
+    clientId,
     startDate: undefined,
     endDate: undefined,
   });

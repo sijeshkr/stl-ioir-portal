@@ -37,7 +37,8 @@ export function TopicDialog({ open, onOpenChange, onSuccess }: TopicDialogProps)
     platform: "",
   });
 
-  const { data: monthlyPlans } = trpc.monthlyPlans.list.useQuery();
+  const clientId = 1; // TODO: Get from context
+  const { data: monthlyPlans } = trpc.monthlyPlans.list.useQuery({ clientId });
   const createTopic = trpc.contentCalendar.create.useMutation({
     onSuccess: () => {
       toast.success("Topic created successfully");

@@ -12,5 +12,5 @@ export default defineConfig({
   dbCredentials: {
     url: connectionString,
   },
-  casing: "preserve", // Preserve camelCase column names
+  // casing option removed - using default behavior
 });

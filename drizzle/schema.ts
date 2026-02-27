@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal, date } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -244,6 +244,38 @@ export const content = mysqlTable("content", {
 
 export type Content = typeof content.$inferSelect;
 export type InsertContent = typeof content.$inferInsert;
+
+/**
+ * Content Calendar Topics - High-level daily content planning
+ * Sits between Monthly Plan and Content Creation
+ */
+export const contentCalendarTopics = mysqlTable("content_calendar_topics", {
+  id: int("id").autoincrement().primaryKey(),
+  clientId: int("clientid").notNull(),
+  monthlyPlanId: int("monthlyplanid").notNull(),
+  strategyId: int("strategyid"),
+  
+  // High-level planning fields
+  scheduledDate: date("scheduleddate").notNull(),
+  topicTitle: varchar("topictitle", { length: 255 }).notNull(),
+  cta: text("cta"),
+  audience: varchar("audience", { length: 255 }), // Target persona
+  platform: mysqlEnum("platform", ["linkedin", "facebook", "instagram", "twitter", "tiktok", "youtube", "blog", "newsletter", "gmb"]).notNull(),
+  
+  // Status tracking (reflects linked content status)
+  status: mysqlEnum("status", ["planned", "in_progress", "completed", "published"]).default("planned").notNull(),
+  
+  // Link to detailed content
+  contentId: int("contentid"), // NULL until content is created
+  
+  notes: text("notes"),
+  createdBy: int("createdby").notNull(),
+  createdAt: timestamp("createdat").defaultNow().notNull(),
+  updatedAt: timestamp("updatedat").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ContentCalendarTopic = typeof contentCalendarTopics.$inferSelect;
+export type InsertContentCalendarTopic = typeof contentCalendarTopics.$inferInsert;
 
 /**
  * Content Tags - Link content to strategy elements

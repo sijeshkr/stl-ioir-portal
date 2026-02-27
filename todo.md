@@ -35,9 +35,23 @@
 - [x] Created WORKFLOW_CONNECTIONS.md documentation explaining Strategy → Monthly Plan → Content hierarchy
 
 ## In Progress
+- [ ] Complete database migration for content_calendar_topics (strategyId nullable)
 - [ ] Content form tab switching functionality (tabs need click handlers)
 - [ ] Content tagging with personas/services/conditions
 - [ ] Drag-and-drop functionality in Kanban view
+
+## Recently Completed (Feb 26, 2026)
+- [x] Create content_calendar_topics database table
+- [x] Build Content Calendar backend API (create, list, update, updateStatus, delete, linkToContent)
+- [x] Build Content Calendar page with 3 views (Table, Calendar, Kanban)
+- [x] Add Calendar menu item to sidebar navigation
+- [x] Create Topic Creation Dialog with all required fields
+- [x] Add topic picker dropdown to Content Creation page
+- [x] Auto-populate form when topic is selected from calendar
+- [x] Add "Create Content" button to calendar topics in table view
+- [x] Link calendar topics to content creation via URL params
+- [x] Modernize UI design with improved CSS (glass morphism, shadows, transitions)
+- [x] Create comprehensive API tests for content calendar (10 tests)
 
 ## Pending Features
 - [ ] Comment threads for content approval

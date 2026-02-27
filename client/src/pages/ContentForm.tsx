@@ -20,6 +20,7 @@ import { toast } from "sonner";
 export default function ContentForm() {
   const { id } = useParams();
   const [, setLocation] = useLocation();
+  const topicIdFromUrl = new URLSearchParams(window.location.search).get('topicId');
   // Using sonner toast
   const isEdit = id !== "new";
 
@@ -51,6 +52,37 @@ export default function ContentForm() {
 
   // Fetch strategies for dropdown
   const { data: strategies } = trpc.strategies.list.useQuery({});
+
+  // Fetch calendar topics for picker
+  const { data: calendarTopics } = trpc.contentCalendar.list.useQuery({
+    startDate: undefined,
+    endDate: undefined,
+  });
+
+  // Handle calendar topic selection
+  const handleTopicSelect = (topicId: string) => {
+    if (topicId === "none") return;
+    
+    const topic = calendarTopics?.find((t: any) => t.id === parseInt(topicId));
+    if (topic) {
+      setFormData({
+        ...formData,
+        monthlyPlanId: topic.monthlyplanid,
+        topicTitle: topic.topictitle,
+        platform: topic.platform,
+        topicDescription: topic.cta || "",
+        scheduledDate: topic.scheduleddate,
+      });
+      toast.success("Topic details loaded from calendar");
+    }
+  };
+
+  // Auto-load topic from URL if topicId is present
+  useEffect(() => {
+    if (topicIdFromUrl && calendarTopics) {
+      handleTopicSelect(topicIdFromUrl);
+    }
+  }, [topicIdFromUrl, calendarTopics]);
 
   useEffect(() => {
     if (content) {
@@ -159,6 +191,31 @@ export default function ContentForm() {
           <CardTitle>{isEdit ? "Edit Content" : "New Content"}</CardTitle>
         </CardHeader>
         <CardContent>
+          {/* Calendar Topic Picker */}
+          {!isEdit && (
+            <div className="mb-6 p-4 bg-muted/50 rounded-lg border">
+              <Label htmlFor="calendarTopic" className="text-base font-semibold mb-2 block">
+                📅 Pick a Calendar Topic (Optional)
+              </Label>
+              <p className="text-sm text-muted-foreground mb-3">
+                Select a pre-planned topic from your content calendar to auto-fill details
+              </p>
+              <Select onValueChange={handleTopicSelect}>
+                <SelectTrigger id="calendarTopic">
+                  <SelectValue placeholder="Select a calendar topic..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">Start from scratch</SelectItem>
+                  {calendarTopics?.map((topic: any) => (
+                    <SelectItem key={topic.id} value={topic.id.toString()}>
+                      {new Date(topic.scheduleddate).toLocaleDateString()} - {topic.topictitle} ({topic.platform})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
+
           <Tabs defaultValue="topic" value={formData.stage} className="space-y-6">
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="topic">Topic</TabsTrigger>

@@ -31,6 +31,7 @@ const menuItems = [
   { icon: LayoutDashboard, label: "Overview", path: "/dashboard" },
   { icon: Target, label: "Strategies", path: "/strategies" },
   { icon: Calendar, label: "Monthly Plans", path: "/monthly-plans" },
+  { icon: Calendar, label: "Calendar", path: "/calendar" },
   { icon: FileText, label: "Content", path: "/content" },
   { icon: FolderOpen, label: "Files", path: "/files" },
   { icon: Ticket, label: "Tickets", path: "/tickets" },

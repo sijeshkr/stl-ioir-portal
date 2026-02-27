@@ -14,6 +14,7 @@ import MonthlyPlanForm from "./pages/MonthlyPlanForm";
 import Content from "./pages/Content";
 import ContentForm from "./pages/ContentForm";
 import ContentDetail from "./pages/ContentDetail";
+import ContentTopicsCalendar from "./pages/ContentTopicsCalendar";
 import Files from "./pages/Files";
 
 function Router() {
@@ -79,6 +80,10 @@ function Router() {
       
       <Route path="/content/:id">
         {isAuthenticated ? <ContentDetail /> : <Redirect to="/login" />}
+      </Route>
+      
+      <Route path="/calendar">
+        {isAuthenticated ? <ContentTopicsCalendar /> : <Redirect to="/login" />}
       </Route>
       
       <Route path="/files">

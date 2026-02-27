@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `content_calendar_topics` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `clientid` int NOT NULL,\n  `monthlyplanid` int NOT NULL,\n  `strategyid` int NOT NULL,\n  `scheduleddate` date NOT NULL,\n  `topictitle` varchar(255) NOT NULL,\n  `cta` text,\n  `audience` varchar(255),\n  `platform` enum('linkedin', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'blog', 'newsletter', 'gmb') NOT NULL,\n  `status` enum('planned', 'in_progress', 'completed', 'published') NOT NULL DEFAULT 'planned',\n  `contentid` int,\n  `notes` text,\n  `createdby` int NOT NULL,\n  `createdat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2mUrRaMbTa1LekM.5f022c9c716e --database YbWgdiFRdJ5qMnQsCXiLcU --execute CREATE TABLE IF NOT EXISTS `content_calendar_topics` (\n  `id` int AUTO_INCREMENT PRIMARY KEY,\n  `clientid` int NOT NULL,\n  `monthlyplanid` int NOT NULL,\n  `strategyid` int NOT NULL,\n  `scheduleddate` date NOT NULL,\n  `topictitle` varchar(255) NOT NULL,\n  `cta` text,\n  `audience` varchar(255),\n  `platform` enum('linkedin', 'facebook', 'instagram', 'twitter', 'tiktok', 'youtube', 'blog', 'newsletter', 'gmb') NOT NULL,\n  `status` enum('planned', 'in_progress', 'completed', 'published') NOT NULL DEFAULT 'planned',\n  `contentid` int,\n  `notes` text,\n  `createdby` int NOT NULL,\n  `createdat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 244
+}

@@ -207,3 +207,8 @@
 - [x] Fix monthlyPlans.list.useQuery undefined parameter error (TopicDialog.tsx and ContentForm.tsx)
 - [x] Verify all database migrations completed successfully
 - [ ] Test Content Calendar page end-to-end
+
+## Content Calendar Invalid Time Value Error (Feb 27, 2026 - COMPLETE ✅)
+- [x] Debug Invalid time value error in ContentTopicsCalendar component (property name mismatch)
+- [x] Fix date formatting issue causing RangeError (changed topic.scheduleddate to topic.scheduledDate with null check)
+- [ ] Test Content Calendar page after fix

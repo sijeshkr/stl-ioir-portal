@@ -250,9 +250,9 @@ export default function ContentTopicsCalendar() {
                       {topics.map((topic: any) => (
                         <tr key={topic.id} className="border-b hover:bg-muted/50">
                           <td className="py-3 px-4">
-                            {format(new Date(topic.scheduleddate), "MMM dd, yyyy")}
+                            {topic.scheduledDate ? format(new Date(topic.scheduledDate), "MMM dd, yyyy") : "-"}
                           </td>
-                          <td className="py-3 px-4 font-medium">{topic.topictitle}</td>
+                          <td className="py-3 px-4 font-medium">{topic.topicTitle}</td>
                           <td className="py-3 px-4">
                             <Badge className={getPlatformColor(topic.platform)}>
                               {topic.platform}
@@ -355,9 +355,9 @@ export default function ContentTopicsCalendar() {
                           <Badge className={getPlatformColor(topic.platform)}>
                             {topic.platform}
                           </Badge>
-                          <p className="font-medium text-sm">{topic.topictitle}</p>
+                          <p className="font-medium text-sm">{topic.topicTitle}</p>
                           <p className="text-xs text-muted-foreground">
-                            {format(new Date(topic.scheduleddate), "MMM dd")}
+                            {topic.scheduledDate ? format(new Date(topic.scheduledDate), "MMM dd") : "-"}
                           </p>
                           {topic.cta && (
                             <p className="text-xs text-muted-foreground italic">

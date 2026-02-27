@@ -24,12 +24,12 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { TopicDialog } from "@/components/TopicDialog";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, addMonths, subMonths } from "date-fns";
 
-type ViewMode = "table" | "calendar" | "kanban";
+type ViewMode = "list" | "table" | "calendar" | "kanban";
 
 export default function ContentTopicsCalendar() {
   const { user } = useAuth();
   const [, setLocation] = useLocation();
-  const [viewMode, setViewMode] = useState<ViewMode>("calendar");
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [selectedMonth, setSelectedMonth] = useState(new Date());
   const [selectedMonthlyPlan, setSelectedMonthlyPlan] = useState<number | null>(null);
   const [showTopicDialog, setShowTopicDialog] = useState(false);
@@ -46,6 +46,33 @@ export default function ContentTopicsCalendar() {
     startDate,
     endDate,
   });
+
+  // Auto-generate posts mutation
+  const generatePosts = trpc.contentCalendar.generateFromMonthlyPlan.useMutation({
+    onSuccess: (result) => {
+      alert(`Successfully generated ${result.generated} placeholder posts!`);
+      refetch();
+    },
+    onError: (error) => {
+      alert(`Error generating posts: ${error.message}`);
+    },
+  });
+
+  const handleGeneratePosts = async () => {
+    if (!selectedMonthlyPlan) return;
+    
+    const confirmed = confirm(
+      "This will auto-generate placeholder posts from the monthly plan's content scope. Continue?"
+    );
+    
+    if (confirmed) {
+      const month = format(selectedMonth, "yyyy-MM");
+      await generatePosts.mutateAsync({
+        monthlyPlanId: selectedMonthlyPlan,
+        month,
+      });
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -98,10 +125,19 @@ export default function ContentTopicsCalendar() {
               Plan daily content topics before creating detailed copies
             </p>
           </div>
-          <Button onClick={() => setShowTopicDialog(true)}>
-            <Plus className="mr-2 h-4 w-4" />
-            New Topic
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => handleGeneratePosts()}
+              disabled={!selectedMonthlyPlan}
+            >
+              Generate Posts from Plan
+            </Button>
+            <Button onClick={() => setShowTopicDialog(true)}>
+              <Plus className="mr-2 h-4 w-4" />
+              New Topic
+            </Button>
+          </div>
         </div>
 
         {/* Filters & View Switcher */}
@@ -158,12 +194,12 @@ export default function ContentTopicsCalendar() {
 
           <div className="flex items-center gap-2">
             <Button
-              variant={viewMode === "table" ? "default" : "outline"}
+              variant={viewMode === "list" ? "default" : "outline"}
               size="sm"
-              onClick={() => setViewMode("table")}
+              onClick={() => setViewMode("list")}
             >
               <TableIcon className="mr-2 h-4 w-4" />
-              Table
+              List
             </Button>
             <Button
               variant={viewMode === "calendar" ? "default" : "outline"}
@@ -185,7 +221,7 @@ export default function ContentTopicsCalendar() {
         </div>
 
         {/* Content Views */}
-        {viewMode === "table" && (
+        {viewMode === "list" && (
           <Card className="p-6">
             <div className="space-y-4">
               {isLoading ? (
@@ -202,6 +238,7 @@ export default function ContentTopicsCalendar() {
                         <th className="text-left py-3 px-4 font-semibold">Date</th>
                         <th className="text-left py-3 px-4 font-semibold">Topic</th>
                         <th className="text-left py-3 px-4 font-semibold">Platform</th>
+                        <th className="text-left py-3 px-4 font-semibold">Source</th>
                         <th className="text-left py-3 px-4 font-semibold">Audience</th>
                         <th className="text-left py-3 px-4 font-semibold">Status</th>
                         <th className="text-left py-3 px-4 font-semibold">Actions</th>
@@ -217,6 +254,14 @@ export default function ContentTopicsCalendar() {
                           <td className="py-3 px-4">
                             <Badge className={getPlatformColor(topic.platform)}>
                               {topic.platform}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-4">
+                            <Badge 
+                              variant="outline"
+                              className={topic.source === "monthly_plan" ? "bg-purple-50 text-purple-700 border-purple-200" : "bg-blue-50 text-blue-700 border-blue-200"}
+                            >
+                              {topic.source === "monthly_plan" ? "Auto-generated" : "Manual"}
                             </Badge>
                           </td>
                           <td className="py-3 px-4 text-muted-foreground">

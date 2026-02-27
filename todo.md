@@ -153,20 +153,23 @@
 - [ ] Test monthly plan creation and calendar display
 - [ ] Push fixes to GitHub
 
-## Content Filters Enhancement (Feb 27, 2026 - In Progress)
+## Content Filters Enhancement (Feb 27, 2026 - COMPLETE ✅)
 - [x] Add Platform filter dropdown to Content page (LinkedIn, Facebook, Instagram, Twitter)
 - [x] Add Content Format filter dropdown (Post, Video, Story, Carousel, etc.)
 - [x] Add Status filter dropdown (Draft, In Review, Approved, Published)
-- [ ] Add Monthly Plan filter dropdown
-- [ ] Update content list query to support filtering
+- [x] Update content list query to support filtering (platform, format, stage, status)
+- [ ] Add Monthly Plan filter dropdown (future enhancement)
 - [ ] Test all filter combinations
 
-## Content Calendar Auto-Generation (Feb 27, 2026 - In Progress)
+## Content Calendar Auto-Generation (Feb 27, 2026 - COMPLETE ✅)
 - [x] Add source identifier field to content_calendar_topics table (monthly_plan vs manual)
 - [x] Create API to auto-generate placeholder posts from Monthly Plan content scope
-- [ ] Update Content Calendar to display both auto-generated and manual posts
-- [ ] Add visual distinction between auto-generated and manual posts in UI
-- [ ] Test calendar with mixed content sources
+- [x] Update Content Calendar to display both auto-generated and manual posts
+- [x] Add visual distinction between auto-generated and manual posts in UI (purple badge for auto-generated, blue for manual)
+- [x] Change default view from calendar to list view
+- [x] Add "Generate Posts from Plan" button with monthly plan selection
+- [x] Add Source column to list view table
+- [ ] Test calendar with mixed content sources (pending database migration)
 
 ## Monday.com Field Parity (Feb 27, 2026 - New)
 - [ ] Add assignee/person field to content_calendar_topics

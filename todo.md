@@ -195,3 +195,9 @@
 - [x] Fix missing clientId in content calendar topics query
 - [x] Fix invalid query parameter causing "expected object, received undefined" error (was missing clientId in monthlyPlans.list query)
 - [ ] Test Content Calendar page after fixes
+
+## Content Calendar clientId Errors (Feb 27, 2026 - COMPLETE ✅)
+- [x] Fix clientId missing/empty in content calendar list queries (now required in input)
+- [x] Fix clientId using 'default' in auto-generation insert statements (now uses plan[0].clientId)
+- [x] Fix generateFromMonthlyPlan API input validation error
+- [ ] Test auto-generation feature end-to-end

@@ -9,13 +9,14 @@ export const contentCalendarRouter = router({
   list: protectedProcedure
     .input(
       z.object({
+        clientId: z.number(),
         monthlyPlanId: z.number().optional(),
         startDate: z.string().optional(), // YYYY-MM-DD
         endDate: z.string().optional(),   // YYYY-MM-DD
       })
     )
     .query(async ({ ctx, input }) => {
-      const conditions = [eq(contentCalendarTopics.clientId, ctx.user.clientId)];
+      const conditions = [eq(contentCalendarTopics.clientId, input.clientId)];
       
       if (input.monthlyPlanId) {
         conditions.push(eq(contentCalendarTopics.monthlyPlanId, input.monthlyPlanId));
@@ -294,9 +295,9 @@ export const contentCalendarRouter = router({
           const scheduledDate = `${year}-${month.padStart(2, "0")}-${dayOfMonth.toString().padStart(2, "0")}`;
 
           placeholders.push({
-            clientId: ctx.user.clientId,
+            clientId: plan[0].clientId,
             monthlyPlanId: input.monthlyPlanId,
-            strategyId: plan[0].strategyId || null,
+            strategyId: null,
             scheduledDate,
             topicTitle: `${platform.toUpperCase()} ${contentType} #${i + 1}`,
             cta: null,

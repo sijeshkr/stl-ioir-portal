@@ -35,8 +35,6 @@ export default function MonthlyPlanForm() {
   // Form state
   const [name, setName] = useState("");
   const [month, setMonth] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
   const [notes, setNotes] = useState("");
 
   // Strategy allocation
@@ -64,8 +62,7 @@ export default function MonthlyPlanForm() {
     if (plan) {
       setName(plan.name);
       setMonth(plan.month);
-      setStartDate(new Date(plan.startDate).toISOString().split("T")[0]);
-      setEndDate(new Date(plan.endDate).toISOString().split("T")[0]);
+      // startDate and endDate removed - using month field only
       setNotes(plan.notes || "");
 
       if (plan.strategies && plan.strategies.length > 0) {
@@ -205,27 +202,6 @@ export default function MonthlyPlanForm() {
                       type="month"
                       value={month}
                       onChange={(e) => setMonth(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="start-date">Start Date *</Label>
-                    <Input
-                      id="start-date"
-                      type="date"
-                      value={startDate}
-                      onChange={(e) => setStartDate(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="end-date">End Date *</Label>
-                    <Input
-                      id="end-date"
-                      type="date"
-                      value={endDate}
-                      onChange={(e) => setEndDate(e.target.value)}
                     />
                   </div>
                 </div>

@@ -30,6 +30,9 @@
 - [x] Built Files page with upload and browse UI
 - [x] Added file management backend API (ready for OAuth credentials)
 - [x] Implemented file grid with thumbnails and actions
+- [x] Fixed Monthly Plans View Details button error (removed startDate/endDate references)
+- [x] Removed Start Date and End Date fields from Monthly Plan form UI
+- [x] Created WORKFLOW_CONNECTIONS.md documentation explaining Strategy → Monthly Plan → Content hierarchy
 
 ## In Progress
 - [ ] Content form tab switching functionality (tabs need click handlers)

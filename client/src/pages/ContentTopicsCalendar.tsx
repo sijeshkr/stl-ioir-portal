@@ -35,13 +35,15 @@ export default function ContentTopicsCalendar() {
   const [showTopicDialog, setShowTopicDialog] = useState(false);
 
   // Fetch monthly plans for filter
-  const { data: monthlyPlans } = trpc.monthlyPlans.list.useQuery();
+  const clientId = 1; // TODO: Get from context
+  const { data: monthlyPlans } = trpc.monthlyPlans.list.useQuery({ clientId });
 
   // Fetch calendar topics
   const startDate = format(startOfMonth(selectedMonth), "yyyy-MM-dd");
   const endDate = format(endOfMonth(selectedMonth), "yyyy-MM-dd");
   
   const { data: topics = [], isLoading, refetch } = trpc.contentCalendar.list.useQuery({
+    clientId,
     monthlyPlanId: selectedMonthlyPlan || undefined,
     startDate,
     endDate,

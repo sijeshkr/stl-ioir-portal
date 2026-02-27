@@ -177,3 +177,21 @@
 - [ ] Add due date field (separate from posting date)
 - [ ] Update Content Calendar UI to show all Monday.com equivalent fields
 - [ ] Add file upload functionality to calendar topics
+
+## Content Planning & Monthly Plan Fixes (Feb 27, 2026 - COMPLETE ✅)
+- [x] Add month filter dropdown to Content Planning page
+- [x] Debug Monthly Plan save issue (fixed case mismatch in schema)
+- [x] Run database migration to rename columns to camelCase
+- [x] Test Monthly Plan creation and verify data persistence
+- [ ] Clarify strategy overlap between months design approach
+- [ ] Push fixes to GitHub
+
+## Monthly Plan Insert Error Fix (Feb 27, 2026 - In Progress)
+- [ ] Fix insert query using 'default' for columns that need explicit NULL values
+- [ ] Test Monthly Plan creation after fix
+- [ ] Verify data saves correctly to database
+
+## Content Calendar Page Errors (Feb 27, 2026 - COMPLETE ✅)
+- [x] Fix missing clientId in content calendar topics query
+- [x] Fix invalid query parameter causing "expected object, received undefined" error (was missing clientId in monthlyPlans.list query)
+- [ ] Test Content Calendar page after fixes

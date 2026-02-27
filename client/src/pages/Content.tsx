@@ -62,6 +62,7 @@ export default function Content() {
   const [selectedStatus, setSelectedStatus] = useState<"all" | "draft" | "pending_approval" | "approved" | "rejected">("all");
   const [selectedPlatform, setSelectedPlatform] = useState<"all" | "linkedin" | "facebook" | "instagram" | "twitter">("all");
   const [selectedFormat, setSelectedFormat] = useState<"all" | "post" | "video" | "story" | "carousel" | "reel">("all");
+  const [selectedMonth, setSelectedMonth] = useState<string>(format(new Date(), "yyyy-MM"));
 
   // For now, hardcode clientId and monthlyPlanId
   // In production, these would come from URL params or context
@@ -206,6 +207,15 @@ export default function Content() {
             <option value="carousel">Carousel</option>
             <option value="reel">Reel</option>
           </select>
+        </div>
+        <div>
+          <label className="text-sm font-medium text-gray-700 mr-2">Month:</label>
+          <input
+            type="month"
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+            className="border border-gray-300 rounded-md px-3 py-1.5 text-sm"
+          />
         </div>
       </div>
 
